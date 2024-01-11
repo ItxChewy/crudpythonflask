@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/images'  # Change the path to save images in static/images
+app.config['UPLOAD_FOLDER'] = 'static/images'  
 initialize_db(app)
 
 def allowed_file(filename):
@@ -29,20 +29,15 @@ def addUser():
     username = request.form['username']
     name = request.form['name']
     password = request.form['password']
-
-    # Verifica si se ha cargado un archivo en el campo 'image'
     if 'image' in request.files:
         image = request.files['image']
-        # Verifica si el nombre del archivo no está vacío
         if image.filename != '':
             filename = secure_filename(image.filename)
             uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image.save(uploaded_path)
         else:
-            # Si el nombre del archivo está vacío, asigna None a 'filename'
             filename = None
     else:
-        # Si no se proporcionó un campo 'image', asigna None a 'filename'
         filename = None
 
     date_column = datetime.now()
@@ -62,8 +57,6 @@ def addUser():
 
     return redirect(url_for('home'))
 
-
-
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     user_to_edit = db.session.query(User).get(id)
@@ -78,8 +71,6 @@ def edit(id):
             return redirect(url_for('home'))
 
     return render_template('index.html', data=User.query.all())
-
-
 
 @app.route('/delete/<int:id>')
 def delete(id):

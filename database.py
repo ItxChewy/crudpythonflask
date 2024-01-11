@@ -1,5 +1,3 @@
-# database.py
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from dotenv import load_dotenv, find_dotenv
@@ -18,7 +16,7 @@ ma = Marshmallow()
 def initialize_db(app):
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{usuario}:{password}@{host}/{bd}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = 'hardsecretkey'  # Para las sesiones flash
+    app.config['SECRET_KEY'] = 'hardsecretkey'  
 
     db.init_app(app)
     ma.init_app(app)
@@ -29,10 +27,10 @@ class User(db.Model):
     username = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    image_filename = db.Column(db.String(255))  # Campo de la imagen
+    image_filename = db.Column(db.String(255))  
     image_blob = db.Column(types.LargeBinary)
-    numeric_column = db.Column(db.Float)  # Campo numérico
-    date_column = db.Column(db.Date)  # Campo de fecha
+    numeric_column = db.Column(db.Float) 
+    date_column = db.Column(db.Date)  
 
     def __init__(self, username, name, password, image_filename=None,image_blob=None, numeric_column=None, date_column=None):
         self.username = username
