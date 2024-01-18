@@ -5,15 +5,16 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = os.path.join('static' , 'images' ) 
+upload_folder = os.path.join('static', 'images')
+
+if not os.path.exists(upload_folder):
+    os.makedirs(upload_folder)
+    
+app.config['UPLOAD_FOLDER'] = upload_folder
 initialize_db(app)
 
 def allowed_file(filename):
     return '.' in filename
-
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
-
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
