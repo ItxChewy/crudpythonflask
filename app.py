@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/images'  
+app.config['UPLOAD_FOLDER'] = os.path.join('static' , 'images' ) 
 initialize_db(app)
 
 def allowed_file(filename):
