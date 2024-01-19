@@ -38,7 +38,7 @@ def addUser():
             #uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             #image.save(uploaded_path)
             #with open(uploaded_path, 'rb') as file:
-                image_blob = file.read()
+            image_blob = file.read()
     else:
         filename = None
 
