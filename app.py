@@ -29,13 +29,13 @@ def addUser():
     username = request.form['username']
     name = request.form['name']
     password = request.form['password']
-    image_blob = None  # Inicializar a None
+    #image_blob = None  # Inicializar a None
 
     if 'image' in request.files:
         image = request.files['image']
         if image.filename != '':
             filename = secure_filename(image.filename)
-            #uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             #image.save(uploaded_path)
             #with open(uploaded_path, 'rb') as file:
             image_blob = file.read()
