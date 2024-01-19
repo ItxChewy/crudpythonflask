@@ -35,9 +35,9 @@ def addUser():
         image = request.files['image']
         if image.filename != '':
             filename = secure_filename(image.filename)
-            uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image.save(uploaded_path)
-            with open(uploaded_path, 'rb') as file:
+            #uploaded_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            #image.save(uploaded_path)
+            #with open(uploaded_path, 'rb') as file:
                 image_blob = file.read()
     else:
         filename = None
