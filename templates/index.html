@@ -175,19 +175,18 @@
     </div>
     <script>
         function validateForm() {
-            // Obtener referencias a los campos del formulario
             var username = document.getElementById('username').value;
             var name = document.getElementsByName('name')[0].value;
             var password = document.getElementsByName('password')[0].value;
             var peso = document.getElementsByName('peso')[0].value;
 
-            // Realizar la validación personalizada
+            
             if (username.trim() === '' || name.trim() === '' || password.trim() === '' || peso.trim() === '') {
                 alert('Por favor, completa todos los campos.');
                 return false;
             }
 
-            // Puedes agregar más validaciones aquí según tus requisitos
+            
 
             return true;
         }
